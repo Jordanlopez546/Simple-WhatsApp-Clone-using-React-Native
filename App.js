@@ -65,10 +65,10 @@ const App = () => {
         </View>
         <View style={styles.thirdView}>
           {underLineText === 'USERS' && <UsersScreen />}
-        {underLineText === 'CHATS' && <ChatsScreen />}
-        {underLineText === 'STATUS' && <StatusScreen />}
-        {underLineText === 'CALLS' && <CallsScreen />}
-      </View>
+          {underLineText === 'CHATS' && <ChatsScreen />}
+          {underLineText === 'STATUS' && <StatusScreen />}
+          {underLineText === 'CALLS' && <CallsScreen />}
+        </View>
       </SafeAreaView>
     </NavigationContainer>
   );
