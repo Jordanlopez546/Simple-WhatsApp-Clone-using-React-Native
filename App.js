@@ -25,7 +25,7 @@ const App = () => {
   if (loading) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
-        <ActivityIndicator size={'large'} color={'#E0E0E0'} />
+        <ActivityIndicator size={'100'} style={{ transform: [{ scale: 2 }] }} color={'#E0E0E0'} />
       </SafeAreaView>
     )
   }
@@ -77,14 +77,10 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   thirdView: {
     flex: 1,
-    // backgroundColor: 'black',
-    // marginTop: 10
   },
   secondView: {
     height: 35,
