@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Platform, StatusBar, FlatList, TextInput, Alert, Button, ActivityIndicator, SectionList, Pressable, RefreshControl, SafeAreaView } from 'react-native';
 import { Feather, MaterialIcons } from '@expo/vector-icons'
 import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Tab = createMaterialTopTabNavigator();
+
 
 import ChatsScreen from './src/screens/ChatsScreen';
 import StatusScreen from './src/screens/StatusScreen';
 import CallsScreen from './src/screens/CallsScreen';
 import UsersScreen from './src/screens/Users';
+import First from './src/components/First';
 
 const App = () => {
-  const [underLineText, setUnderLineText] = useState('CHATS');
   const [loading, setLoading] = useState(true);
-
-  const handleTabPress = (tab) => {
-    setUnderLineText(tab);
-  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -32,44 +32,31 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.mainView}>
-          <View style={styles.whatsappView}>
-            <Text style={styles.whatsappText}>WhatsApp</Text>
-          </View>
-          <View style={styles.iconsView}>
-            <TouchableOpacity activeOpacity={-1}>
-              <Feather style={styles.icon} color='#E0E0E0' name='camera' size={25} />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={-1}>
-              <Feather style={styles.icon} color='#E0E0E0' name='search' size={25} />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={-1}>
-              <Feather style={styles.icon} color='#E0E0E0' name='more-vertical' size={25} />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.secondView}>
-          <TouchableOpacity onPressIn={()=>handleTabPress('USERS')} style={[underLineText==='USERS' && styles.underLineText]}>
-            <MaterialIcons name='people' size={20} color='#E0E0E0' />
-          </TouchableOpacity>
-          <TouchableOpacity onPressIn={()=>handleTabPress('CHATS')} style={[underLineText==='CHATS' && styles.underLineText]}>
-            <Text style={styles.pagesText}>CHATS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPressIn={()=>handleTabPress('STATUS')} style={[underLineText==='STATUS' && styles.underLineText]}>
-            <Text style={styles.pagesText}>STATUS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPressIn={()=>handleTabPress('CALLS')} style={[underLineText==='CALLS' && styles.underLineText]}>
-            <Text style={styles.pagesText}>CALLS</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.thirdView}>
-          {underLineText === 'USERS' && <UsersScreen />}
-          {underLineText === 'CHATS' && <ChatsScreen />}
-          {underLineText === 'STATUS' && <StatusScreen />}
-          {underLineText === 'CALLS' && <CallsScreen />}
-        </View>
-      </SafeAreaView>
+      <First/>
+      <Tab.Navigator 
+        initialRouteName="Chats"
+        tabBarOptions={{
+          activeTintColor: '#fff',
+          inactiveTintColor: '#C0C0C0', 
+          style: {
+            backgroundColor: '#075E54', 
+          },
+          labelStyle: {
+            fontSize: 16, 
+          },
+          indicatorStyle: {
+            borderBottomColor: '#fff', 
+            borderBottomWidth: 3, 
+          },
+        }}>
+        <Tab.Screen name="Users" component={UsersScreen} options={{
+          tabBarLabel: () => null,
+          tabBarIcon: ({focused}) => <MaterialIcons name='people' size={25} color={focused ? '#fff' : '#A0A0A0'} />,
+          }}  />
+        <Tab.Screen name="Chats" component={ChatsScreen} />
+        <Tab.Screen name="Status" component={StatusScreen} />
+        <Tab.Screen name="Calls" component={CallsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
 export default function ChatsScreen() {
 
@@ -53,25 +53,26 @@ export default function ChatsScreen() {
             time: "10:00",
             countOfMessages: 1,
         },
+        
     ]
 
     const Chat = ({item}) => {
         return (
-            <View style={styles.wrapperContainer}>
+            <TouchableOpacity activeOpacity={0} style={styles.wrapperContainer}>
                 <View style={styles.imageMsgTextWrapper}>
-                    <Image style={[styles.image, {width: 45, height:45,borderRadius:22, resizeMode:'contain'}]} source={item.the_image} />
+                    <Image style={[styles.image, styles.imageSize]} source={item.the_image} />
                     <View style={styles.msgWrapper}>
                         <Text style={styles.text1}>{item.phoneNumber}</Text>
                         <Text style={styles.text2}>{item.messageText}</Text>
                     </View>
                 </View>
                 <View style={styles.enteredMsgWrapper}>
-                    <Text style={{marginBottom: 3, color: '#589E3D', fontSize: 15}}>{item.time}</Text>
-                    <View style={{width:20, height: 20, backgroundColor: '#66BB6A', alignItems: 'center', justifyContent: 'center', borderRadius:10}}>
-                        <Text style={{color: 'white', fontWeight: 'bold'}}>{item.countOfMessages}</Text>
+                    <Text style={styles.itemTime}>{item.time}</Text>
+                    <View style={styles.countOFMsg}>
+                        <Text style={styles.msgCount}>{item.countOfMessages}</Text>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -101,11 +102,16 @@ const styles = StyleSheet.create({
     },
     msgWrapper: {
         marginHorizontal: 15,
-        maxWidth: '70%'
+        maxWidth: '75%'
     },
     enteredMsgWrapper:{
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    itemTime: {
+        marginBottom: 3,
+        color: '#589E3D',
+        fontSize: 15
     },
     text1: {
         fontSize: 19,
@@ -113,5 +119,23 @@ const styles = StyleSheet.create({
     },
     text2: {
         fontSize: 16
+    },
+    imageSize: {
+        width: 45, 
+        height:45,
+        borderRadius:22, 
+        resizeMode:'contain'
+    }, 
+    countOFMsg: {
+        width:20, 
+        height: 20, 
+        backgroundColor: '#66BB6A', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        borderRadius:10
+    }, 
+    msgCount: {
+        color: 'white', 
+        fontWeight: 'bold'
     }
 })
