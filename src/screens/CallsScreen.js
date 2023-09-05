@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList } from "react-native";
-import { Feather, MaterialIcons } from '@expo/vector-icons';
+import { Feather, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
 export default function CallsScreen({item}) {
 
@@ -113,12 +113,20 @@ export default function CallsScreen({item}) {
     }
 
     return (
-        <View style={{}}>
+        <View style={{flex: 1}}>
             <FlatList 
             data={DATA}
             keyExtractor={(item, index) => item+index}
             renderItem={({item, index}) => <Call item={item} index={index} />}
             />
+            <View style={styles.cameraPencilContainer}>
+                <TouchableOpacity activeOpacity={-0.5} style={styles.pencilContainer}>
+                    <FontAwesome name="pencil" size={25} color={'transparent'} />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={-0.5} style={styles.cameraContainer}>
+                    <FontAwesome name="phone" size={25} color={'#000'} />
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -133,7 +141,7 @@ const styles = StyleSheet.create({
     recent: {
         marginLeft: -9, 
         color: 'black', 
-        fontSize: 20, 
+        fontSize: 18, 
     },
     recentContainer: {
         position: 'absolute', 
@@ -176,5 +184,31 @@ const styles = StyleSheet.create({
         height:45,
         borderRadius:22, 
         resizeMode:'contain'
-    }
+    },
+    cameraPencilContainer: {
+        width: 100, 
+        height:120, 
+        position: 'absolute', 
+        right: -5, 
+        bottom: 10, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    pencilContainer: {
+        width: 35, 
+        height: 35, 
+        backgroundColor: 'transparent',  
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginBottom: 15, 
+        borderRadius: 10
+    },
+    cameraContainer: {
+        width: 50, 
+        height:50, 
+        backgroundColor: '#559C59', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        borderRadius: 10
+    },
 })

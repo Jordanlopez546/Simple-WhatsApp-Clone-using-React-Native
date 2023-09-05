@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Platform, StatusBar, FlatList, TextInput, Alert, Button, ActivityIndicator, SectionList, Pressable, RefreshControl, SafeAreaView } from 'react-native';
-import { Feather, MaterialIcons } from '@expo/vector-icons'
+import {StyleSheet, Platform, StatusBar, ActivityIndicator, SafeAreaView } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   if (loading) {
@@ -35,16 +35,13 @@ const App = () => {
       <First/>
       <Tab.Navigator 
         initialRouteName="Chats"
-        tabBarOptions={{
-          activeTintColor: '#fff',
-          inactiveTintColor: '#C0C0C0', 
-          style: {
+        screenOptions={{
+          tabBarActiveTintColor: '#fff',
+          tabBarInactiveTintColor: '#C0C0C0', 
+          tabBarStyle: {
             backgroundColor: '#075E54', 
           },
-          labelStyle: {
-            fontSize: 16, 
-          },
-          indicatorStyle: {
+          tabBarIndicatorStyle: {
             borderBottomColor: '#fff', 
             borderBottomWidth: 3, 
           },
@@ -53,9 +50,9 @@ const App = () => {
           tabBarLabel: () => null,
           tabBarIcon: ({focused}) => <MaterialIcons name='people' size={25} color={focused ? '#fff' : '#A0A0A0'} />,
           }}  />
-        <Tab.Screen name="Chats" component={ChatsScreen} />
-        <Tab.Screen name="Status" component={StatusScreen} />
-        <Tab.Screen name="Calls" component={CallsScreen} />
+        <Tab.Screen name="Chats" component={ChatsScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize',  fontSize: 17}}}/>
+        <Tab.Screen name="Status" component={StatusScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize', fontSize: 17}}}/>
+        <Tab.Screen name="Calls" component={CallsScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize', fontSize: 17}}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

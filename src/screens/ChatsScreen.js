@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { Feather, MaterialIcons, FontAwesome} from '@expo/vector-icons';
 
 export default function ChatsScreen() {
 
@@ -53,7 +54,6 @@ export default function ChatsScreen() {
             time: "10:00",
             countOfMessages: 1,
         },
-        
     ]
 
     const Chat = ({item}) => {
@@ -77,12 +77,20 @@ export default function ChatsScreen() {
     }
 
     return (
-        <View style={{}}>
+        <View style={{flex: 1}}>
             <FlatList 
             data={DATA}
             keyExtractor={(item, index) => item+index}
             renderItem={({item}) => <Chat item={item} />}
             />
+            <View style={styles.cameraPencilContainer}>
+                <TouchableOpacity activeOpacity={-0.5} style={styles.pencilContainer}>
+                    <FontAwesome name="pencil" size={25} color={'transparent'} />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={-0.5} style={styles.cameraContainer}>
+                    <Feather name="message-square" size={25} color={'#000'} />
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -137,5 +145,31 @@ const styles = StyleSheet.create({
     msgCount: {
         color: 'white', 
         fontWeight: 'bold'
-    }
+    },
+    cameraPencilContainer: {
+        width: 100, 
+        height:120, 
+        position: 'absolute', 
+        right: -5, 
+        bottom: 10, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    pencilContainer: {
+        width: 35, 
+        height: 35, 
+        backgroundColor: 'transparent',  
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginBottom: 15, 
+        borderRadius: 10
+    },
+    cameraContainer: {
+        width: 50, 
+        height:50, 
+        backgroundColor: '#559C59', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        borderRadius: 10
+    },
 })

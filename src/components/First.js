@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Feather, MaterialIcons } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
 
 function First(props) {
@@ -15,7 +15,7 @@ function First(props) {
                         <Feather style={styles.icon} color='#E0E0E0' name='camera' size={25} />
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={-1}>
-                        <Feather style={styles.icon} color='#E0E0E0' name='search' size={25} />
+                        <Feather style={[styles.icon,]} color='#E0E0E0' name='search' size={25} />
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={-1}>
                         <Feather style={styles.icon} color='#E0E0E0' name='more-vertical' size={25} />
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         marginRight: -20,
     },
     icon: {
-        marginHorizontal: 10
+        marginHorizontal: 8
     },
     whatsappText: {
         color: '#E0E0E0',
