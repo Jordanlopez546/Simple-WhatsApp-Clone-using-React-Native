@@ -30,6 +30,30 @@ const App = () => {
     )
   }
 
+  const CustomTabBarIcon = ({ focused, badgeCount }) => (
+  <View>
+    {/* Your tab bar icon here */}
+    <Text>Chats</Text>
+    {badgeCount > 0 && (
+      <View
+        style={{
+          position: 'absolute',
+          top: -5, // Adjust the position as needed
+          right: -5, // Adjust the position as needed
+          backgroundColor: 'red',
+          borderRadius: 10,
+          width: 20,
+          height: 20,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Text style={{ color: 'white' }}>{badgeCount}</Text>
+      </View>
+    )}
+  </View>
+);
+
   return (
     <NavigationContainer>
       <First/>
@@ -50,7 +74,7 @@ const App = () => {
           tabBarLabel: () => null,
           tabBarIcon: ({focused}) => <MaterialIcons name='people' size={25} color={focused ? '#fff' : '#A0A0A0'} />,
           }}  />
-        <Tab.Screen name="Chats" component={ChatsScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize',  fontSize: 17}}}/>
+        <Tab.Screen name="Chats(7)" component={ChatsScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize',  fontSize: 17}}}/>
         <Tab.Screen name="Status" component={StatusScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize', fontSize: 17}}}/>
         <Tab.Screen name="Calls" component={CallsScreen} options={{ tabBarLabelStyle: {textTransform: 'capitalize', fontSize: 17}}}/>
       </Tab.Navigator>
